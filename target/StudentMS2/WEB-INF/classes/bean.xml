@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    配置service-->
+    <bean id="adminService" class="service.impl.AdminServiceImpl">
+<!--        注入dao-->
+        <property name="adminDao" ref="adminDao"/>
+    </bean>
+<!--    配置dao-->
+    <bean id="adminDao" class="dao.impl.AdminDaoImpl">
+<!--        注入QueryRunner-->
+        <property name="runner" ref="runner"/>
+
+    </bean>
+<!--    配置QueryRunner-->
+    <bean id="runner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype">
+<!--        注入数据源-->
+        <constructor-arg name="ds" ref="dataSourse"/>
+    </bean>
+
+<!--    配置数据源-->
+    <bean id="dataSourse" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+<!--        连接数据库必备信息-->
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="jdbcUrl">
+            <value>jdbc:mysql://localhost:3306/hibernate?useSSL=false&amp;serverTimezone=Asia/Shanghai</value>
+        </property>
+        <property name="user" value="root"/>
+        <property name="password" value="123456"/>
+
+
+    </bean>
+
+
+</beans>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="hello">
+            <result name="success">/struts.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="login" class="action.AdminAction">
+            <result name="success" type="chain">findAll</result>
+            <result name="login">/login.jsp</result>
+        </action>
+
+        <action name="login_stu" class="action.StudentAction" method="login" >
+            <result name="success">/stu_mess.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="findAll" class="action.StudentAction" method="findAll">
+            <result name="success_f">/success.jsp</result>
+            <result name="success_s">/success_pu.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="findStudent" class="action.StudentAction" method="findStudent">
+            <result name="success">/findStudent.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="findDep" class="action.StudentAction" method="findDep">
+            <result name="success">/findStudent.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+
+        <action name="delete" class="action.StudentAction" method="delete">
+            <result name="success">/success.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="update" class="action.StudentAction" method="updateStudent">
+            <result name="success_admin">/success.jsp</result>
+            <result name="success_stu">/stu_mess.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="insertStu" class="action.StudentAction" method="insertStudent">
+            <result name="success">/success.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="register" class="action.RegisterAction">
+            <result name="success">/success.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+    </package>
+</struts>

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <!--hibernate实现的是数据库访问的封装-->
+
+    <property name="url">
+      <![CDATA[jdbc:mysql://localhost:3306/hibernate?useSSL=false&serverTimezone=Asia/Shanghai]]>
+    </property>
+    <property name="driver_class">com.mysql.cj.jdbc.Driver</property>
+    <property name="username">root</property><!--用户名-->
+    <property name="password">123456</property><!--密码-->
+
+    <!-- 配置数据库方言-->
+    <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+    <property name="show_sql">true</property><!--可以把数据库语句显示到控制台-->
+    <property name="hibernate.format_sql">true</property><!--格式化输出-->
+
+    <!--数据连接池-->
+    <property name="connection.provider_class">
+      com.alibaba.druid.support.hibernate.DruidConnectionProvider
+    </property>
+
+    <!--配置Session hbnsession=sf.getCurrentSession()环境-->
+    <property name="hibernate.current_session_context_class">thread</property>
+
+    <!--        指定自动生成数据表的策略-->
+    <property name="hibernate.hbm2ddl.auto">update</property><!--如果没有表，可以自动创建-->
+    <!--注册实体类 全限定类名-->
+    <mapping class="PO.Admin"/>
+    <mapping class="PO.Student"/>
+  </session-factory>
+</hibernate-configuration>
